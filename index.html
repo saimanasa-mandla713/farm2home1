@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farm2Home</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<style>
+  #home {
+    background: linear-gradient(to right, #2ecc71, #27ae60);
+    padding: 80px 20px;
+    color: white;
+    text-align: center;
+  }
+
+  .category-card {
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .category-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  footer {
+    background: #222;
+    color: #ccc;
+  }
+
+  /* Tooltip style for title */
+  .tooltip-title {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    color: #fff;
+  }
+
+  .tooltip-text {
+    visibility: hidden;
+    width: 250px;
+    /*background-color:green;*/
+    color:green;
+    text-align: left;
+    border-radius: 8px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: -120%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .tooltip-title:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-success tooltip-title" href="#">
+      Farm2Home
+      <span class="tooltip-text">
+        • Fresh from local farms to your kitchen<br>
+        • Guaranteed organic and chemical-free<br>
+        • Supporting local communities
+      </span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link text-dark" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href="javascript:void(0)" onclick="handleProductClick('products.html')">Products</a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href="javascript:void(0)" onclick="handleProductClick('cart.html')">Cart</a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href="#contact">Contact</a></li>
+        <li class="nav-item">
+          <a class="nav-link text-dark fw-bold" href="javascript:void(0)" id="authBtn" onclick="toggleAuth()">Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header id="home">
+  <h1 class="fw-bold display-4">Fresh From Farm to Your Home 🌿</h1>
+  <p class="fs-5 mt-3">Organic • Healthy • Delivered Daily</p>
+  <button onclick="handleProductClick('products.html')" class="btn btn-light btn-lg mt-3 px-4 py-2 shadow">Shop Now</button>
+</header>
+
+<!-- Categories -->
+<section class="container mt-5">
+  <h2 class="text-center mb-4 fw-bold">🌾 Shop by Category</h2>
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <div class="card p-3 shadow-sm category-card" onclick="handleProductClick('vegetables.html')">
+        <img src="Vegetables.jpeg" class="card-img-top rounded" height="220" style="object-fit:cover;">
+        <h4 class="mt-3 fw-bold">Vegetables</h4>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card p-3 shadow-sm category-card" onclick="handleProductClick('fruits.html')">
+        <img src="fruits.jpeg" class="card-img-top rounded" height="220" style="object-fit:cover;">
+        <h4 class="mt-3 fw-bold">Fruits</h4>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card p-3 shadow-sm category-card" onclick="handleProductClick('dairy.html')">
+        <img src="dairy.jpg" class="card-img-top rounded" height="220" style="object-fit:cover;">
+        <h4 class="mt-3 fw-bold">Dairy Products</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="container mt-5 text-center">
+  <div class="p-4 rounded-4 shadow" style="background:#e8fbe8; border-left:5px solid #28a745;">
+    <h2 class="fw-bold mb-3" style="color:#1e7e34;">About Farm2Home</h2>
+    <p class="fs-5" style="line-height:1.6;">
+      Farm2Home – Fresh from the Farm to Your Home. We deliver fresh, organic fruits, vegetables, and dairy straight from local farms to your doorstep. Our mission is to make healthy, chemical-free food affordable and accessible. By supporting local farmers, we ensure the best quality produce while helping communities thrive.
+    </p>
+  </div>
+</section>
+
+<!-- Login Section -->
+<section id="loginSection" class="container mt-5 p-4 bg-white rounded shadow-sm" style="max-width:450px;">
+  <h2 class="fw-bold text-center mb-3">Login to Shop</h2>
+  <form onsubmit="loginUser(event)">
+    <div class="mb-3">
+      <label class="form-label fw-bold">User Name</label>
+      <input type="text" id="username" class="form-control" placeholder="Enter your name" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label fw-bold">Email</label>
+      <input type="email" class="form-control" placeholder="Enter email" required>
+    </div>
+    <button type="submit" class="btn btn-success w-100 py-2">Login</button>
+  </form>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="container mt-5 p-4 bg-light rounded shadow-sm">
+  <h2 class="fw-bold">Contact Us</h2>
+  <p class="fs-5">📧 Email: support@farm2home.com</p>
+  <p class="fs-5">📞 Phone: +91 98765 43210</p>
+</section>
+
+<!-- Footer -->
+<footer class="text-center p-3 mt-5">
+  © 2025 Farm2Home — Fresh Delivered Daily 🚜
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let targetPage = "";
+
+  function checkLoginStatus() {
+    const user = localStorage.getItem("username");
+    const authBtn = document.getElementById("authBtn");
+    const loginSection = document.getElementById("loginSection");
+
+    if (user) {
+      authBtn.innerText = "Logout (" + user + ")";
+      authBtn.classList.replace("text-dark", "text-danger");
+      loginSection.style.display = "none";
+    } else {
+      authBtn.innerText = "Login";
+      authBtn.classList.replace("text-danger", "text-dark");
+      loginSection.style.display = "block";
+    }
+  }
+
+  function scrollToLogin() {
+    document.getElementById("loginSection").scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("username").focus();
+  }
+
+  function handleProductClick(page) {
+    const user = localStorage.getItem("username");
+    if (user) {
+      window.location.href = page;
+    } else {
+      alert("Please login to start shopping!");
+      scrollToLogin();
+      targetPage = page;
+    }
+  }
+
+  function loginUser(e) {
+    e.preventDefault();
+    const name = document.getElementById("username").value;
+    localStorage.setItem("username", name);
+    alert("Welcome, " + name + "!");
+
+    if (targetPage) {
+      window.location.href = targetPage;
+    } else {
+      location.reload();
+    }
+  }
+
+  function toggleAuth() {
+    const user = localStorage.getItem("username");
+    if (user) {
+      if (confirm("Are you sure you want to logout?")) {
+        localStorage.removeItem("username");
+        alert("Logged out successfully.");
+        location.reload();
+      }
+    } else {
+      scrollToLogin();
+    }
+  }
+
+  window.onload = checkLoginStatus;
+</script>
+</body>
+</html>

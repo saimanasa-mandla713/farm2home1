@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dairy Products | Farm2Home</title>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom right, #e8f5e9, #f1f8ff);
+            margin: 0;
+        }
+
+        /* Cart Box */
+        .cart-box {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            background: #2b7a0b;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 30px;
+            font-size: 18px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 80px;
+            font-size: 32px;
+            color: #2e7d32;
+            font-weight: 700;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .product-card {
+            width: 250px;
+            background: #fff;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 160px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            font-size: 20px;
+            margin-top: 10px;
+            color: #1b5e20;
+        }
+
+        .btn {
+            margin-top: 12px;
+            background: #2b7a0b;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #1e5507;
+        }
+
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto 40px;
+            text-align: center;
+            padding: 12px;
+            background: #2b7a0b;
+            color: white;
+            font-size: 18px;
+            border-radius: 30px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Cart -->
+<a href="cart.html" style="text-decoration:none;">
+    <div class="cart-box">
+        🛒 Cart: <span id="cartCount">0</span>
+    </div>
+</a>
+
+<h2>Dairy Products</h2>
+
+<div class="grid">
+
+    <div class="product-card">
+        <img src="Milk.jpg">
+        <h3>Milk</h3>
+        <p>₹52 per liter</p>
+        <button class="btn" onclick="addToCart('Milk', 52, 'Milk.jpg')">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="butter.jpg">
+        <h3>Butter</h3>
+        <p>₹40</p>
+        <button class="btn" onclick="addToCart('Butter', 40, 'butter.jpg')">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="Ghee.webp">
+        <h3>Ghee</h3>
+        <p>₹550</p>
+        <button class="btn" onclick="addToCart('Ghee', 550, 'Ghee.webp')">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="curd.webp">
+        <h3>Curd</h3>
+        <p>₹80</p>
+        <button class="btn" onclick="addToCart('Curd', 80, 'curd.webp')">Add to Cart</button>
+    </div>
+
+</div>
+
+<a href="products.html" class="back-btn">⬅ Go Back</a>
+
+<script>
+    // Load cart from localStorage
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Show cart count
+    document.getElementById("cartCount").innerText = cart.length;
+
+    function addToCart(name, price, image) {
+        cart.push({ name, price, image });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        document.getElementById("cartCount").innerText = cart.length;
+        alert(name + " added to cart!");
+    }
+</script>
+
+</body>
+</html>

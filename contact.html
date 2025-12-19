@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Farm2Home</title>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom right, #e8f5e9, #f1f8ff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2b7a0b;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1b5e20;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .btn {
+            background: #2b7a0b;
+            color: white;
+            padding: 12px 15px;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #1e5507;
+        }
+
+        .info-box {
+            margin-top: 25px;
+            padding: 15px;
+            background: #f0ffe6;
+            border-left: 4px solid #2b7a0b;
+            border-radius: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto 0;
+            padding: 12px;
+            text-align: center;
+            background: #2b7a0b;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .back-btn:hover {
+            background: #1e5507;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Contact Us</h2>
+
+        <!-- Contact Form -->
+        <form onsubmit="return sendMessage()">
+            <label>Your Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+
+            <label>Your Email</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label>Your Message</label>
+            <textarea id="message" placeholder="Type your message..." required></textarea>
+
+            <button class="btn" type="submit">Send Message</button>
+        </form>
+
+        <!-- Contact Information -->
+        <div class="info-box">
+            <p><strong>📞 Phone:</strong> +91 98765 43210</p>
+            <p><strong>📧 Email:</strong> support@farm2home.com</p>
+            <p><strong>📍 Address:</strong> Hyderabad, Telangana, India</p>
+        </div>
+
+        <a href="index.html" class="back-btn">⬅ Go Back Home</a>
+    </div>
+
+    <script>
+        function sendMessage() {
+            alert("Thank you! Your message has been sent.");
+            return false; // prevents page reload
+        }
+    </script>
+
+</body>
+
+</html>

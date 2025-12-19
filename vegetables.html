@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vegetables | Farm2Home</title>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom right, #e8f5e9, #f1f8ff);
+            margin: 0;
+        }
+
+        .cart-box {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            background: #2b7a0b;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 30px;
+            font-size: 18px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 80px;
+            font-size: 32px;
+            color: #2e7d32;
+            font-weight: 700;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .product-card {
+            width: 250px;
+            background: #fff;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 160px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            font-size: 20px;
+            margin-top: 10px;
+            color: #1b5e20;
+        }
+
+        .btn {
+            margin-top: 12px;
+            background: #2b7a0b;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #1e5507;
+        }
+
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto 40px;
+            text-align: center;
+            padding: 12px;
+            background: #2b7a0b;
+            color: white;
+            font-size: 18px;
+            border-radius: 30px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Cart -->
+<a href="cart.html" style="text-decoration:none;">
+    <div class="cart-box">
+        🛒 Cart: <span id="cartCount">0</span>
+    </div>
+</a>
+
+<h2>Fresh Vegetables</h2>
+
+<div class="grid">
+
+    <div class="product-card">
+        <img src="tomato.jpeg">
+        <h3>Tomato</h3>
+        <p>₹25 per kg</p>
+        <button class="btn" onclick="addToCart('Tomato',25,'tomato.jpeg')">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="potato.avif">
+        <h3>Potato</h3>
+        <p>₹20 per kg</p>
+        <button class="btn" onclick="addToCart('Potato',20,'potato.avif')">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="onion.jpg">
+        <h3>Onion</h3>
+        <p>₹35 per kg</p>
+        <button class="btn" onclick="addToCart('Onion',35,'onion.jpg')">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="green chilles.jpg">
+        <h3>Green Chillies</h3>
+        <p>₹32 per kg</p>
+        <button class="btn" onclick="addToCart('Green Chillies',32,'green chilles.jpg')">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="brinjal.jpg">
+        <h3>Brinjal</h3>
+        <p>₹35 per kg</p>
+        <button class="btn" onclick="addToCart('Brinjal',35,'brinjal.jpg')">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="califlower.jpeg">
+        <h3>Cauliflower</h3>
+        <p>₹35 per kg</p>
+        <button class="btn" onclick="addToCart('Cauliflower',35,'califlower.jpeg')">Add to Cart</button>
+    </div>
+
+</div>
+
+<a href="products.html" class="back-btn">⬅ Go Back</a>
+
+<script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cartCount").innerText = cart.length;
+
+    function addToCart(name, price, image) {
+        cart.push({ name, price, image });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        document.getElementById("cartCount").innerText = cart.length;
+        alert(name + " added to cart!");
+    }
+</script>
+
+</body>
+</html>

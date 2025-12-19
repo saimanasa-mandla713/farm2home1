@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Cart</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            background: #f6fff6;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2b7a0b;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .cart-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            margin-right: 15px;
+        }
+
+        .remove-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .total-box {
+            text-align: center;
+            font-size: 22px;
+            color: green;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: block;
+            width: 220px;
+            margin: 25px auto;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .checkout-btn {
+            background: green;
+            color: white;
+        }
+
+        /* Address Form */
+        .address-box {
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .address-box h3 {
+            text-align: center;
+            color: #2b7a0b;
+        }
+
+        .address-box input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Your Cart</h2>
+
+<div id="cartContainer"></div>
+<div id="totalPrice" class="total-box"></div>
+
+<button class="btn checkout-btn" onclick="showAddress()">Checkout</button>
+
+<!-- Address Form (Hidden First) -->
+<div class="address-box" id="addressBox">
+    <h3>📍 Delivery Address</h3>
+    <input type="text" id="address" placeholder="House No, Street">
+    <input type="text" id="city" placeholder="City">
+    <input type="text" id="pincode" placeholder="Pincode">
+
+    <button class="btn checkout-btn" onclick="confirmOrder()">Confirm Order</button>
+</div>
+
+<script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function loadCart() {
+        let container = document.getElementById("cartContainer");
+        let totalBox = document.getElementById("totalPrice");
+        container.innerHTML = "";
+        let total = 0;
+
+        if (cart.length === 0) {
+            container.innerHTML = "<h3 style='text-align:center'>Your cart is empty</h3>";
+            return;
+        }
+
+        cart.forEach((item, index) => {
+            total += Number(item.price);
+            container.innerHTML += `
+                <div class="cart-item">
+                    <div class="cart-left">
+                        <img src="${item.image}">
+                        <div>
+                            <h4>${item.name}</h4>
+                            <p>₹${item.price}</p>
+                        </div>
+                    </div>
+                    <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+                </div>
+            `;
+        });
+
+        totalBox.innerHTML = "Total: ₹" + total;
+    }
+
+    function removeItem(index) {
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCart();
+    }
+
+    function showAddress() {
+    if (cart.length === 0) {
+        alert("Please add products to the cart before checkout.");
+        return; // stop execution
+    }
+    document.getElementById("addressBox").style.display = "block";
+    window.scrollTo(0, document.body.scrollHeight);
+}
+
+
+    function confirmOrder() {
+        let name = localStorage.getItem("username") || "Customer";
+        let address = document.getElementById("address").value;
+        let city = document.getElementById("city").value;
+        let pincode = document.getElementById("pincode").value;
+
+        if (address === "" || city === "" || pincode === "") {
+            alert("Please enter full address");
+            return;
+        }
+
+        localStorage.removeItem("cart");
+
+        document.body.innerHTML = `
+            <h1 style="text-align:center;color:green;margin-top:50px;">
+                ✅ Thank You, ${name}!
+            </h1>
+            <p style="text-align:center;font-size:18px;">
+                📍 ${address}, ${city} - ${pincode}
+            </p>
+            <p style="text-align:center;">Your order is confirmed 😊</p>
+            <div style="text-align:center;">
+                <a href="index.html"
+                   style="padding:10px 20px;background:green;color:white;
+                   text-decoration:none;border-radius:8px;">
+                   Back to Home
+                </a>
+            </div>
+        `;
+    }
+
+    loadCart();
+</script>
+
+</body>
+</html>

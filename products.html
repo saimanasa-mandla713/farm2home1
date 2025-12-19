@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Farm2Home</title>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #e8f5e9, #f1f8ff);
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 32px;
+            color: #2e7d32;
+            font-weight: 700;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+            padding-bottom: 80px; /* Space for button */
+        }
+
+        .category-card {
+            width: 280px;
+            height: 330px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            cursor: pointer;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s ease-in-out;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        .category-card h3 {
+            margin-top: 15px;
+            font-size: 22px;
+            color: #1b5e20;
+            font-weight: 600;
+        }
+
+        /* Bottom Go Back Button */
+        .bottom-back-btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 12px;
+            text-align: center;
+            background: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .bottom-back-btn:hover {
+            background: #1b5e20;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Choose a Category</h2>
+
+<div class="container">
+
+    <div class="category-card" onclick="location.href='vegetables.html'">
+        <img src="Vegetables.jpeg" alt="Vegetables">
+        <h3>Vegetables</h3>
+    </div>
+
+    <div class="category-card" onclick="location.href='fruits.html'">
+        <img src="fruits.jpeg" alt="Fruits">
+        <h3>Fruits</h3>
+    </div>
+
+    <div class="category-card" onclick="location.href='dairy.html'">
+        <img src="dairy.jpg" alt="Dairy">
+        <h3>Dairy Products</h3>
+    </div>
+
+</div>
+
+<!-- Bottom Go Back Button -->
+<a href="index.html" class="bottom-back-btn">⬅ Go Back</a>
+
+</body>
+</html>
